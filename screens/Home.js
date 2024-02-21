@@ -1,32 +1,14 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import SearchBar from "../components/SearchBar";
-import {useEffect, useState} from "react";
-import yelpApi from "../api/yelp";
+import {useState} from "react";
+import useRestaurants from "../hooks/useRestaurants";
 
 const Home = () => {
 
     const [searchText, setSearchText] = useState("")
-    const [results, setResults] = useState([])
-    const [errorMessage, setErrorMessage] = useState("")
-    useEffect(() => {
-        searchApi("pasta")
-    }, []);
-    const searchApi = async searchText => {
-        try {
-            const response = await yelpApi.get("/search", {
-                params: {
-                    limit: 50, term: searchText, location: "san jose"
-                }
-            })
-            setResults(response.data.businesses)
-            setErrorMessage(null)
-        } catch (err) {
-            setErrorMessage("Something went wrong !!!")
-        }
-    }
+    const [results, errorMessage, searchApi] = useRestaurants()
 
-
-    return <View >
+    return <View>
         <SearchBar
             text={searchText}
             onSearchTextChange={newText => setSearchText(newText)}
@@ -40,7 +22,7 @@ const Home = () => {
 }
 const styles = StyleSheet.create({
     container: {
-        margin:16
+        margin: 16
     }
 });
 export default Home
