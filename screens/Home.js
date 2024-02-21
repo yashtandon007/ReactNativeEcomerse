@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import SearchBar from "../components/SearchBar";
 import {useState} from "react";
 import useRestaurants from "../hooks/useRestaurants";
@@ -19,10 +19,12 @@ const Home = () => {
         />
         <ScrollView>
             {errorMessage && <Text>{errorMessage}</Text>}
-            <RestaurantList header="Cost Effective" results={filterResultsByPrice('$')}/>
-            <RestaurantList header="Bit Pricier" results={filterResultsByPrice('$$')}/>
-            <RestaurantList header="Big Spender" results={filterResultsByPrice('$$$')}/>
-            <RestaurantList header="Most Expensive" results={filterResultsByPrice('$$$$')}/>
+            {results?.length > 0 ? <>
+                <RestaurantList header="Cost Effective" results={filterResultsByPrice('$')}/>
+                <RestaurantList header="Bit Pricier" results={filterResultsByPrice('$$')}/>
+                <RestaurantList header="Big Spender" results={filterResultsByPrice('$$$')}/>
+                <RestaurantList header="Most Expensive" results={filterResultsByPrice('$$$$')}/>
+            </> : <ActivityIndicator color={"#1774cc"}/>}
         </ScrollView>
     </>
 }

@@ -10,6 +10,7 @@ const useRestaurants = () => {
     }, []);
     const searchApi = async searchText => {
         try {
+            setResults([])
             const response = await yelpApi.get("/search", {
                 params: {
                     limit: 50, term: searchText, location: "san jose"
