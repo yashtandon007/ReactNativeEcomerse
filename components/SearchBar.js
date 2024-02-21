@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     container: {
         height: 40,
         marginHorizontal: 16,
+        marginBottom:8,
         borderRadius: 6,
         alignItems: "center",
         marginTop: 6,
