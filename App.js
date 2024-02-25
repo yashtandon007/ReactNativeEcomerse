@@ -1,15 +1,19 @@
 import {createStackNavigator} from "react-navigation-stack";
-import Home from "./screens/Home"
 import {createAppContainer} from "react-navigation";
-import RestaurantDetails from "./screens/RestaurantDetails";
+import IndexScreen from "./screens/IndexScreen";
+import {BlogProvider} from "./context/BlogContext";
+import Home from "./screens/Home";
 
 const navigator = createStackNavigator({
-    Home: Home,
-    RestaurantDetails: RestaurantDetails
+    IndexScreen: IndexScreen
 }, {
-    initialRouteName: 'Home', defaultNavigationOptions: {
+    initialRouteName: 'IndexScreen', defaultNavigationOptions: {
         title: "Rotolo"
     }
 });
-export default createAppContainer(navigator);
-
+const App = createAppContainer(navigator);
+export default () => {
+    return <BlogProvider>
+        <App/>
+    </BlogProvider>
+}
