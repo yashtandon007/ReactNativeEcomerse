@@ -1,8 +1,7 @@
 import {createStackNavigator} from "react-navigation-stack";
 import {createAppContainer} from "react-navigation";
 import IndexScreen from "./screens/IndexScreen";
-import {BlogProvider} from "./context/BlogContext";
-import Home from "./screens/Home";
+import {Provider as BlogProvider} from "./context/BlogContext";
 
 const navigator = createStackNavigator({
     IndexScreen: IndexScreen

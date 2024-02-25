@@ -1,18 +1,17 @@
 import {ActivityIndicator, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useContext} from "react";
-import {BlogContext, BlogProvider} from "../context/BlogContext";
-import RestaurantItem from "../components/RestaurantItem";
+import {Context as BlogContext} from "../context/BlogContext";
 
 
 const IndexScreen = () => {
 
-    const {blogs,addBlogPost} = useContext(BlogContext)
+    const {state,addBlogPost} = useContext(BlogContext)
 
     return <>
         <View>
             <FlatList
                 keyExtractor={item => item.title}
-                data={blogs}
+                data={state}
                 renderItem={({item}) => {
                     return <TouchableOpacity onPress={addBlogPost}>
                         <Text style={{
